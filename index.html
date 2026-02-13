@@ -29,7 +29,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 50;
-      opacity: 0.05;
+      opacity: 0.04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
     .vignette {
@@ -39,32 +39,33 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 40;
-      background: radial-gradient(circle, transparent 5%, rgba(0,0,0,1) 100%);
+      z-index: 45;
+      /* Adjusted from 5% to 40% to prevent everything from being hidden in black */
+      background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 100%);
     }
     .text-glow {
       text-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
     }
     .text-glow-heavy {
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.1);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.15);
     }
     @keyframes floating {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-12px); }
     }
     .floating-text {
       animation: floating 8s ease-in-out infinite;
     }
-    /* The Reveal Mask Effect - Slightly softer edges for dreaminess */
+    /* The Reveal Mask Effect - Controlled by fish position */
     .reveal-mask {
       mask-image: radial-gradient(
-        circle 180px at var(--fish-x, 0) var(--fish-y, 0),
+        circle 180px at var(--fish-x, 50%) var(--fish-y, 50%),
         black 0%,
         rgba(0, 0, 0, 0.4) 50%,
         transparent 100%
       );
       -webkit-mask-image: radial-gradient(
-        circle 180px at var(--fish-x, 0) var(--fish-y, 0),
+        circle 180px at var(--fish-x, 50%) var(--fish-y, 50%),
         black 0%,
         rgba(0, 0, 0, 0.4) 50%,
         transparent 100%
@@ -85,5 +86,7 @@
   <div id="root"></div>
   <div class="grain"></div>
   <div class="vignette"></div>
+  <!-- Explicitly including the module script to ensure initialization on Vercel/Production -->
+  <script type="module" src="./index.tsx"></script>
 </body>
 </html>

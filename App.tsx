@@ -76,18 +76,19 @@ const App: React.FC = () => {
       </div>
 
       {/* Finale Message - Dreamy Emergence from the Depths */}
-      <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-40">
+      {/* Increased Z-index to z-50 to ensure it's above the vignette (z-45) */}
+      <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-[60]">
         <div 
           className={`absolute text-center transition-all ease-in-out transform
             ${stage === SceneStage.FINALE 
               ? 'opacity-100 translate-y-0 tracking-[0.7em] blur-none scale-100 duration-[8000ms]' 
               : 'opacity-0 translate-y-24 tracking-[1.5em] blur-xl scale-90 duration-[3000ms]'}`}
         >
-          <h2 className="text-white text-xl sm:text-3xl uppercase font-extralight text-glow-heavy leading-relaxed floating-text">
+          <h2 className="text-white text-xl sm:text-4xl uppercase font-extralight text-glow-heavy leading-relaxed floating-text">
             Happy Birthday to Aster
           </h2>
           {/* Subtle slow-pulse decorative line */}
-          <div className={`h-[1px] bg-white/10 mx-auto mt-12 transition-all duration-[10000ms] ease-in-out ${stage === SceneStage.FINALE ? 'w-32 opacity-30' : 'w-0 opacity-0'}`}></div>
+          <div className={`h-[1px] bg-white/20 mx-auto mt-12 transition-all duration-[10000ms] ease-in-out ${stage === SceneStage.FINALE ? 'w-48 opacity-40' : 'w-0 opacity-0'}`}></div>
         </div>
       </div>
       
